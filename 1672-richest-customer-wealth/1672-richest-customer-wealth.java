@@ -1,28 +1,13 @@
 class Solution {
     public int maximumWealth(int[][] accounts) {
-        int i = 0;
-        int[] sumAccounts = new int[accounts.length];
-        
-        while (i < accounts.length){
-            int j = 0;
-            int sum = 0;
-            
-            while (j < accounts[i].length){
-                sum += accounts[i][j];
-                j++;
+        int maxWealthSoFar = 0;
+        for (int[] customer : accounts){
+            int currentCustomerWealth = 0;
+            for (int bank : customer){
+                currentCustomerWealth += bank;
             }
-            sumAccounts[i] = sum;
-            i++;
+            maxWealthSoFar = Math.max(maxWealthSoFar, currentCustomerWealth);
         }
-        int k = 1;
-        int max = sumAccounts[0];
-        
-        while (k < sumAccounts.length){
-            if (sumAccounts[k] >= max){
-                max = sumAccounts[k];
-            }
-            k++;
-        }
-        return max;
+        return maxWealthSoFar;
     }
 }
